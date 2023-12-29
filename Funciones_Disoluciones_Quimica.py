@@ -162,57 +162,63 @@ def funciones_quimicas(texto, texto1, texto2, texto3):
 
 while True: 
 
-	def imprimir_seleccion():
-		seleccion = entry_eleccion.get()
-		seleccion
-		ventana.destroy()  # Cierra la ventana después de imprimir la selección
+    def imprimir_seleccion():
+        seleccion = seleccion_var.get()
+        if seleccion == "exit":
+            ventana.destroy()  # Cierra la ventana si la selección es "exit"
+        else:
+            print(f"Seleccionaste: {seleccion}")
+            ventana.destroy()  # Cierra la ventana después de imprimir la selección
+    
+    ventana = tk.Tk()
+    ventana.title("CÁLCULOS DE QUÍMICA")
+    
+    # Variable para almacenar la selección
+    seleccion_var = tk.StringVar()
+    
+    label_eleccion = tk.Label(ventana, text=
+    """
+    Elige la función que necesites:
+    """)
+    label_eleccion.pack()
+    
+    # Crear botones de radio para las opciones
+    opciones = [
+        ("Moles", "1"),
+        ("Molaridad", "2"),
+        ("Densidad", "3"),
+        ("Riqueza, pureza, % masa, % peso", "4"),
+        ("Molalidad", "5"),
+        ("Fracción molar soluto", "6"),
+        ("Fración Molar disolvente", "7"),
+        ("Gramos / Litro", "8"),
+        ("Salir", "exit")
+    ]
+    
+    for texto, valor in opciones:
+        opcion_btn = tk.Radiobutton(ventana, text=texto, variable=seleccion_var, value=valor)
+        opcion_btn.pack(anchor=tk.W)
+    
+    boton_eleccion = tk.Button(ventana, text="Seleccionar", command=imprimir_seleccion)
+    boton_eleccion.pack(pady=10)
+    
+    ventana.mainloop()
 
-	ventana = tk.Tk()
-	ventana.title("CÁLCULOS DE QUÍMICA")
-
-	# Variable para almacenar la selección
-	seleccion_var = tk.StringVar()
-
-	label_eleccion = tk.Label(ventana, text=
-"""
-Elige la función que necesites (selecciona en número de la función):
-1: Moles
-2: Molaridad
-3: Densidad
-4: Riqueza, pureza, % masa, % peso
-5: Molalidad
-6: Fracción molar soluto
-7: Fración Molar disolvente
-8: Gramos / Litro 
-
-Para salir escribe "exit"
-""")
-	label_eleccion.pack()
-
-	entry_eleccion = tk.Entry(ventana, textvariable=seleccion_var)
-	entry_eleccion.pack()
-
-	boton_eleccion = tk.Button(ventana, text="Seleccionar", command=imprimir_seleccion)
-	boton_eleccion.pack(pady=10)
-
-	ventana.mainloop()
-
-	if seleccion_var.get() == "1":
-		funciones_quimicas(texto_moles, "Moles", "Masa", "Masa Molecular")
-	elif seleccion_var.get() == "2":
-		funciones_quimicas(texto_molaridad, "Molaridad", "Moles de Soluto", "Volumen de Disolución")
-	elif seleccion_var.get() == "3":
-		funciones_quimicas(texto_densidad, "Densidad", "Masa", "Volumen")
-	elif seleccion_var.get() == "4":
-		funciones_quimicas(texto_riqueza, "Porecntaje_masa", "Masa de Soluto", "Masa de disolución")
-	elif seleccion_var.get() == "5":
-		funciones_quimicas(texto_molalidad, "Molalidad", "Nº de Moles de Soluto", "Nº de Moles Totales")
-	elif seleccion_var.get() == "6":
-		funciones_quimicas(texto_frac_molar_soluto, "Xs", "Nº de Moles de Soluto", "Nº de Moles Totales")  
-	elif seleccion_var.get() == "7":
-		funciones_quimicas(texto_frac_molar_disolvente, "Xd", "Nº de Moles de Disolvente", "Nº de Moles Totales")  
-	elif seleccion_var.get() == "8":
-		funciones_quimicas(texto_gramos_litro, "Gramos / Litro", "Gramos de Soluto", "Litros de Disolución")  
-	elif seleccion_var.get() == "exit":
-		break	
-
+    if seleccion_var.get() == "1":
+        funciones_quimicas(texto_moles, "Moles", "Masa", "Masa Molecular")
+    elif seleccion_var.get() == "2":
+        funciones_quimicas(texto_molaridad, "Molaridad", "Moles de Soluto", "Volumen de Disolución")
+    elif seleccion_var.get() == "3":
+        funciones_quimicas(texto_densidad, "Densidad", "Masa", "Volumen")
+    elif seleccion_var.get() == "4":
+        funciones_quimicas(texto_riqueza, "Porecntaje_masa", "Masa de Soluto", "Masa de disolución")
+    elif seleccion_var.get() == "5":
+        funciones_quimicas(texto_molalidad, "Molalidad", "Nº de Moles de Soluto", "Nº de Moles Totales")
+    elif seleccion_var.get() == "6":
+        funciones_quimicas(texto_frac_molar_soluto, "Xs", "Nº de Moles de Soluto", "Nº de Moles Totales")  
+    elif seleccion_var.get() == "7":
+        funciones_quimicas(texto_frac_molar_disolvente, "Xd", "Nº de Moles de Disolvente", "Nº de Moles Totales")  
+    elif seleccion_var.get() == "8":
+        funciones_quimicas(texto_gramos_litro, "Gramos / Litro", "Gramos de Soluto", "Litros de Disolución")
+    elif seleccion_var.get() == "exit":
+        break
