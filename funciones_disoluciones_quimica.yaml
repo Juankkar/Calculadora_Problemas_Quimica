@@ -1,0 +1,11 @@
+name: fdq
+
+channels:
+  - conda-forge
+  - anaconda
+  - default
+
+dependencies:
+  - python=3.11
+  - tk=8.6.13
+  - pandas=2.1.4
